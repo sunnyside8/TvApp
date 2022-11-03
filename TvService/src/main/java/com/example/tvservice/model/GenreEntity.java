@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class GenreEntity {
 
-    private String name;
+    private String genreName;
 }
