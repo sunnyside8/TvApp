@@ -1,7 +1,7 @@
 package org.example.controller;
 
 
-import org.example.ActorService;
+import org.example.service.ActorService;
 import org.example.model.entity.ActorEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/actors")
 public class ActorController {
 
-    private final ActorService actorService;
+  private final ActorService actorService;
 
     public ActorController(ActorService actorService) {
         this.actorService = actorService;
