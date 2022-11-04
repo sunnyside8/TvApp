@@ -11,16 +11,14 @@
             <div class="form-row m-5">
                 <div class="col">
                     <label for="title">Film title</label>
-                    <input id="title" type="text" th:field="*{title}" th:errorclass="bg-danger" class="form-control" placeholder="Title">
-                    <small th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="form-text bg-danger rounded">Name must be between 3 and 20
-                        characters</small>
+                    <input id="title" type="text" th:field="*{title}" th:errorclass="is-invalid" class="form-control" placeholder="Title">
+                    <small th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="form-text bg-danger rounded">Error</small>
                 </div>
                 <div class="col">
                     <label for="imgUrl">Image Url</label>
                     <input id="imgUrl"  th:field="*{imgUrl}"
                            th:errorclass="is-invalid" type="text" class="form-control" placeholder="Image Url">
-                    <small id="imageUrlError" class="form-text bg-danger rounded">Image url must be more than 5
-                        characters</small>
+                    <small th:if="${#fields.hasErrors('imgUrl')}" th:errors="*{imgUrl}" id="imageUrlError" class="form-text bg-danger rounded">Error</small>
                 </div>
             </div>
             <div class="form-row m-5">
@@ -28,15 +26,14 @@
                     <label for="yearOfRelease">Year Of Release</label>
                     <input id="yearOfRelease" th:field="*{yearOfRelease}"
                            th:errorclass="is-invalid" type="number" class="form-control" placeholder="Year Of Release">
-                    <small id="yearError" class="form-text bg-danger rounded">Price must be positive</small>
+                    <small th:if="${#fields.hasErrors('yearOfRelease')}" th:errors="*{yearOfRelease}" id="yearError" class="form-text bg-danger rounded">Error</small>
                 </div>
 
                 <div class="col">
                     <label for="genres">Genres</label>
                     <input id="genres" th:field="*{genres}"
                            th:errorclass="is-invalid" type="text" class="form-control" placeholder="Genres">
-                    <small id="genresError" class="form-text bg-danger rounded">Name must be between 3 and 20
-                        characters</small>
+                    <small th:if="${#fields.hasErrors('genres')}" th:errors="*{genres}" id="genresError" class="form-text bg-danger rounded">Error</small>
                 </div>
             </div>
             <div class="form-row m-5">
@@ -44,14 +41,13 @@
                     <label for="actors">Actors</label>
                     <input id="actors" th:field="*{actors}"
                            th:errorclass="is-invalid" type="text" class="form-control" placeholder="Actors">
-                    <small id="actorsError" class="form-text bg-danger rounded">Name must be between 3 and 20
-                        characters</small>
+                    <small th:if="${#fields.hasErrors('actors')}" th:errors="*{actors}" id="actorsError" class="form-text bg-danger rounded">Error</small>
                 </div>
                 <div class="col">
                     <label for="rating">Rating</label>
                     <input id="rating" type="number" th:field="*{rating}"
                            th:errorclass="is-invalid" class="form-control" placeholder="Rating">
-                    <small th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}" class="form-text bg-danger rounded">Price must be positive</small>
+                    <small th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}" class="form-text bg-danger rounded">Error</small>
                 </div>
             </div>
             <div class="form-row m-5">
@@ -59,7 +55,7 @@
                     <label for="description">Description</label>
                     <textarea id="description" th:field="*{description}"
                               th:errorclass="is-invalid" type="text" class="form-control" placeholder="Description"></textarea>
-                    <small  id="descriptionError" class="form-text bg-danger rounded">Description length must be more than 5 characters</small>
+                    <small  th:if="${#fields.hasErrors('description')}" th:errors="*{description}" id="descriptionError" class="form-text bg-danger rounded">Error</small>
                 </div>
             </div>
             <div class="d-flex justify-content-center mt-4">
