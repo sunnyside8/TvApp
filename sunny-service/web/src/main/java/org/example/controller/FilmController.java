@@ -2,19 +2,27 @@ package org.example.controller;
 
 
 import lombok.AllArgsConstructor;
+import org.example.model.entity.FilmEntity;
+import org.example.service.FilmService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/films")
 @AllArgsConstructor
 public class FilmController {
 
-//    private final FilmRepository filmRepository;
-//    private final ActorRepository actorRepository;
+    private final FilmService filmService;
+
+    @GetMapping
+    public String createAFilm(){
+        return "add-film";
+    }
+
 //
 //    @GetMapping("/{id}")
 //    public FilmEntity getFilmById(@PathVariable String id){
-//        return filmRepository.findById(id).orElseThrow();
+//        return fi.findById(id).orElseThrow();
 //    }
 //
 //    @PostMapping

@@ -1,18 +1,16 @@
 package org.example.service;
 
+import lombok.AllArgsConstructor;
 import org.example.model.entity.ActorEntity;
 import org.example.repository.ActorRepository;
 import org.springframework.stereotype.Service;
 
 
 @Service
+@AllArgsConstructor
 public class ActorService {
 
     private final ActorRepository actorRepository;
-
-    public ActorService(ActorRepository actorRepository) {
-        this.actorRepository = actorRepository;
-    }
 
 
     public ActorEntity findById(String id) {

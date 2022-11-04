@@ -14,6 +14,8 @@ public abstract class CinematicEntity {
 
     private String title;
 
+    private String imgUrl;
+
     @Field(name = "year_of_release")
     private int yearOfRelease;
 
