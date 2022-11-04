@@ -1,9 +1,10 @@
 package org.example.model.entity;
 
 import lombok.Data;
+import org.example.model.enums.GenreEnum;
 
 @Data
 public class GenreEntity {
 
-    private String genreName;
+    private GenreEnum genre;
 }
