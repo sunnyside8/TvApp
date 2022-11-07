@@ -14,6 +14,10 @@ public class ActorEntity {
     private String name;
     private LocalDate birthday;
 
+    private String pictureUrl;
+
+    private boolean approved;
+
     public String getId() {
         return id;
     }
@@ -38,6 +42,24 @@ public class ActorEntity {
 
     public ActorEntity setBirthday(LocalDate birthday) {
         this.birthday = birthday;
+        return this;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public ActorEntity setApproved(boolean approved) {
+        this.approved = approved;
+        return this;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public ActorEntity setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
         return this;
     }
 }

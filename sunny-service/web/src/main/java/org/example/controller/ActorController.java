@@ -1,38 +1,24 @@
 package org.example.controller;
 
 
+import lombok.AllArgsConstructor;
 import org.example.service.ActorService;
-import org.example.model.entity.ActorEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/actors")
+@AllArgsConstructor
 public class ActorController {
 
-  private final ActorService actorService;
+    private final ActorService actorService;
 
-    public ActorController(ActorService actorService) {
-        this.actorService = actorService;
+    @GetMapping
+    public String showAllActors(Model model) {
+        if(!model.containsAttribute("actors")) {
+            model.addAttribute("actors", actorService.getAllActors());
+        }
+        return "all-actors";
     }
-
-    @GetMapping("/{id}")
-    public ActorEntity getActorById(@PathVariable String id){
-        return actorService.findById(id);
-    }
-
-    @PostMapping
-    public ActorEntity createActor(@RequestBody ActorEntity actor){
-        return actorService.updateActor(actor);
-    }
-
-//    @PutMapping
-//    public ActorEntity updateActor(@RequestBody ActorEntity actor){
-//        return actorRepository.save(actor);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public String deleteActor(@PathVariable String id){
-//        actorRepository.deleteById(id);
-//        return "Success";
-//    }
 }

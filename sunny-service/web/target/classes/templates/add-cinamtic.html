@@ -6,14 +6,15 @@
 <main class="p-5 bg-blur text-center">
     <h1 class="text-light border-bottom">Add Film</h1>
     <div class="d-flex justify-content-center">
-        <form th:action="@{/films/create}" method="POST" th:object="${cinematicBindingModel}"
+        <form th:action="@{/create}" method="POST" th:object="${cinematicBindingModel}"
               class="text-light">
             <div class="form-row m-5">
                 <div class="col">
                     <label  >Type</label>
                     <select  th:field="*{type}" id="type" class="custom-select" >
-                        <option th:value="${Film}" selected>Film</option>
-                        <option th:value="${Seies}">Series</option>
+                        <option value="">Select type</option>
+                        <option th:each="c : ${T(org.example.model.enums.TypeEnum).values()}"
+                                th:text="${c}" th:value="${c}" value="FOOD">Food</option>
                     </select>
                     <small th:if="${#fields.hasErrors('type')}" th:errors="*{type}" id="artistError" class="form-text bg-danger rounded">You must select type</small>
                 </div>

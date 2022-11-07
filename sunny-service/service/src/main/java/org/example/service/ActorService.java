@@ -2,7 +2,9 @@ package org.example.service;
 
 import lombok.AllArgsConstructor;
 import org.example.model.entity.ActorEntity;
+import org.example.model.view.ActorViewModel;
 import org.example.repository.ActorRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 public class ActorService {
 
     private final ActorRepository actorRepository;
+    private final ModelMapper modelMapper;
 
 
     public ActorEntity findById(String id) {
@@ -32,5 +35,11 @@ public class ActorService {
                        .orElse(actorRepository.save(new ActorEntity().setName(actorName))))
                .collect(Collectors.toList());
 
+    }
+
+    public List<ActorViewModel> getAllActors() {
+        return actorRepository.findActorEntitiesByApprovedTrue()
+                .stream().map(actor -> modelMapper.map(actor, ActorViewModel.class))
+                .collect(Collectors.toList());
     }
 }
