@@ -2,12 +2,14 @@ package org.example.model.binding;
 
 
 import lombok.Data;
-import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.*;
 
 @Data
-public class FilmBindingModel {
+public class CinematicBindingModel {
+
+    @NotBlank(message = "Please select type.")
+    private String type;
 
     @NotBlank(message = "Please enter a title.")
     private String title;

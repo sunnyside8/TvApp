@@ -26,7 +26,7 @@ public class ActorService {
         return actorRepository.save(actor);
     }
 
-    public List<ActorEntity> findActorsOrCreateThemAndReturnAsList(String actors) {
+    public List<ActorEntity> findActorsOrCreateAndReturnAsList(String actors) {
        return Arrays.stream(actors.split(", "))
                .map(actorName -> actorRepository.findActorEntityByName(actorName)
                        .orElse(actorRepository.save(new ActorEntity().setName(actorName))))

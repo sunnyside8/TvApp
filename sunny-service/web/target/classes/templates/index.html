@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons :: head"></head>
+<body>
+<header th:replace="fragments/commons :: navigation"></header>
+<main class="p-5 align-content-center bg-blur">
+    <h1 class="text-light border-left pl-2">Welcome to</h1>
+    <h1 class="text-light border-left pl-2">My TV Application!</h1>
+    <div class="d-flex justify-content-center">
+        <div class="my-index-div w-50">
+            <a class="nav-link text-white active h5" href="/films/create">Films</a>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/commons :: footer" class="footer bg-blur"></footer>
+</body>
+</html>
