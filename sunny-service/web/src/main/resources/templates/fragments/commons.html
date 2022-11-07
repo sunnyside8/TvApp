@@ -45,7 +45,7 @@
                     >Register</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <form th:action="@{/logout}" method="POST">
+                    <form th:action="@{/users/logout}" method="POST">
                         <button type="submit" class="nav-link">
                             Logout
                         </button>

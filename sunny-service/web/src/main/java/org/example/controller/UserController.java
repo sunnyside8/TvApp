@@ -3,12 +3,14 @@ package org.example.controller;
 import lombok.AllArgsConstructor;
 import org.example.model.binding.UserRegisterBindingModel;
 import org.example.service.UserService;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -44,4 +46,27 @@ public class UserController {
     public UserRegisterBindingModel userRegisterBindingModel() {
         return new UserRegisterBindingModel();
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @PostMapping("/login-error")
+    public ModelAndView failedLogin(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
+                                    String username, @ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
+                                    String password){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("bad_credentials",true);
+        modelAndView.addObject("username",username);
+        System.out.println(password);
+
+        modelAndView.setViewName("/login");
+
+        return modelAndView;
+
+    }
+
+
+
 }

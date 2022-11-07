@@ -1,0 +1,51 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons :: head"></head>
+<body>
+<header th:replace="fragments/commons :: navigation"></header>
+<main class="p-5 align-content-center bg-blur my-register-div">
+    <h1 class="text-light    border-bottom mb-5">Login</h1>
+    <div class="d-flex justify-content-center">
+        <div class="row g-3 align-items-center">
+            <div th:if="${bad_credentials}" class="alert alert-danger" role="alert">
+                This username and password combination does not exist.
+            </div>
+            <form
+                    th:action="@{/users/login}"
+                    method="POST"
+                    >
+                <div>
+                    <div class="col-auto">
+                        <label for="inputUsername" class="col-form-label text-light">Username</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text"
+                               name="username"
+                               required
+                               id="inputUsername"
+                               class="form-control"
+                               aria-describedby="usernameHelpInline">
+                    </div>
+                </div>
+                <div>
+                    <div class="col-auto">
+                        <label for="inputPassword" class="col-form-label text-light">Password</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="password" name="password" value="password"
+                               id="inputPassword" class="form-control"
+                               aria-describedby="passwordHelpInline" >
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-2">
+                    <button class="btn btn-primary btn-block w-50" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</main>
+<footer th:replace="fragments/commons :: footer" class="footer bg-blur"></footer>
+</body>
+</html>

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
 
 
-@Service
 @AllArgsConstructor
 public class TvAppUserDetailsService implements UserDetailsService {
 
