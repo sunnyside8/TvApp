@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:sec="https://thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/commons :: head"></head>
 <body>
 <header th:replace="fragments/commons :: navigation"></header>
@@ -19,7 +20,9 @@
                             <p class="card-text" th:text="'Date of Birth ' + *{birthday} " >Price</p>
                         </div>
                         <div class="card-footer">
-                            <a th:href="@{/meals/{id}(id=${a.getId()})}" class="btn btn-primary">Edit</a>
+                            <a th:href="@{/actors/{id}(id=${a.getId()})}" class="btn btn-primary">Edit</a>
+                            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/actors/delete/{id}(id=${a.getId()})}"
+                               class="btn btn-primary">Delete</a>
                         </div>
                     </div>
                 </div>

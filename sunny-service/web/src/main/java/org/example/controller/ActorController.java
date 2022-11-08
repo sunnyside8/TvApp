@@ -21,4 +21,10 @@ public class ActorController {
         }
         return "all-actors";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteActor(@PathVariable String id){
+        actorService.deleteActorById(id);
+        return "redirect:/actors";
+    }
 }

@@ -44,12 +44,9 @@
                        th:href="@{/users/register}"
                     >Register</a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <form th:action="@{/users/logout}" method="POST">
-                        <button type="submit" class="nav-link">
-                            Logout
-                        </button>
-                    </form>
+                <li class="nav-item">
+                        <a class="nav-link text-white active h5" sec:authorize="isAuthenticated()"
+                           th:action="@{/users/logout}" th:method="POST">Logout</a>
                 </li>
 
                 <li sec:authorize="isAuthenticated()" class="nav-item ">

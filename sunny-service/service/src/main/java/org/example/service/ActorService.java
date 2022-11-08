@@ -42,4 +42,8 @@ public class ActorService {
                 .stream().map(actor -> modelMapper.map(actor, ActorViewModel.class))
                 .collect(Collectors.toList());
     }
+
+    public void deleteActorById(String id) {
+        actorRepository.deleteById(id);
+    }
 }

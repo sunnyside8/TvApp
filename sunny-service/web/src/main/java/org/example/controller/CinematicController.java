@@ -13,18 +13,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/create")
 @AllArgsConstructor
 public class CinematicController {
 
     private final FilmService filmService;
     private final ShowtimeService showtimeService;
 
-    @GetMapping("/create")
+    @GetMapping
     public String createAFilm() {
         return "add-cinamtic";
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public String creatingAFilm(@Valid CinematicBindingModel cinematicBindingModel,
                                 BindingResult bindingResult,
                                 RedirectAttributes redirectAttributes) {

@@ -41,11 +41,11 @@ public class FilmService {
                 .stream().map(film -> {
                     FilmModalViewModel filmModalViewModel = modelMapper.map(film, FilmModalViewModel.class);
                     try {
-                        filmModalViewModel.setOneOfTheGenres(film.getGenres().get(0).toString());
-                        filmModalViewModel.setDescription(film.getDescription().substring(0,30));
+                        filmModalViewModel.setOneOfTheGenres(film.getGenres().get(0).getGenre().toString());
                     }catch (Exception e){
                         //logg that there is a movie with no genres => admin mistake or substring error
                     }
+                    filmModalViewModel.setDescription(film.getDescription().substring(0,33));
                     return filmModalViewModel;
                 })
                 .collect(Collectors.toList());

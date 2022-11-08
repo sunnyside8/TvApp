@@ -13,7 +13,7 @@
                         <strong class="d-inline-block mb-2 text-primary" th:text="*{oneOfTheGenres}">Genre</strong>
                         <h3 class="mb-0" th:text="*{title}" >Title</h3>
                         <div class="mb-1 text-muted" th:text="*{yearOfRelease}">Text</div>
-                        <p class="card-text mb-auto" th:text="description">First 60 characters from content + ...</p>
+                        <p class="card-text mb-auto" th:text="*{description} + '...'">First 60 characters from content + ...</p>
                         <a href="/static">Find out more</a>
                     </div>
 
