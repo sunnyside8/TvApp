@@ -31,6 +31,6 @@ public class CinematicBindingModel {
     @Positive(message = "The rating must be positive number")
     private double rating;
 
-    @Size(min = 5,message = "Description too short")
+    @Size(min = 30,message = "Description too short.Minimum 30 symbols.")
     private String description;
 }

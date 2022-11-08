@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
 @Document(collection = "actors")
@@ -13,7 +14,7 @@ public class ActorEntity {
     private String id;
     private String name;
     private LocalDate birthday;
-
+@Field(name = "picture_url")
     private String pictureUrl;
 
     private boolean approved;

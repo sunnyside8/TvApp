@@ -13,7 +13,7 @@ public abstract class CinematicEntity {
     private String id;
 
     private String title;
-
+@Field(name = "Img_url")
     private String imgUrl;
 
     @Field(name = "year_of_release")
