@@ -15,7 +15,7 @@ public class FilmController {
     private final FilmService filmService;
 
     @GetMapping
-    public String allMovies(Model model){
+    public String allFilms(Model model){
         if(!model.containsAttribute("films")) {
             model.addAttribute("films", filmService.getAllApprovedFilms());
         }

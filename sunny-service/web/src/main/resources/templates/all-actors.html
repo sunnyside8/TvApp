@@ -10,17 +10,24 @@
             <div class="row">
                 <div class="col-md-4" th:each="a : ${actors}" th:object="${a}">
                     <div class="card rounded mb-4 shadow-sm">
-                        <img
+                        <img th:if="${a.getPictureUrl() != null}"
                                 class="card-img-top"
                                 width="175" height="175"
                                 th:src="@{a.pictureUrl}"
                         />
+                        <img th:unless="${a.getPictureUrl() != null}"
+                                class="card-img-top"
+                                width="175" height="175"
+                                th:src="@{/images/noimgac.jpg}"
+                        />
                         <div class="card-body">
                             <h5 class="card-title" th:text="*{name}" >Name</h5>
-                            <p class="card-text" th:text="'Date of Birth ' + *{birthday} " >Price</p>
+                            <th:block th:if="${a.getBirthday() != null}">
+                            <p class="card-text" th:text="'Date of Birth :' + *{birthday} " >Date</p>
+                            </th:block>
                         </div>
                         <div class="card-footer">
-                            <a th:href="@{/actors/{id}(id=${a.getId()})}" class="btn btn-primary">Edit</a>
+                            <a th:href="@{/actors/edit/{id}(id=${a.getId()})}" class="btn btn-primary">Edit</a>
                             <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/actors/delete/{id}(id=${a.getId()})}"
                                class="btn btn-primary">Delete</a>
                         </div>

@@ -54,19 +54,14 @@ public class UserController {
 
     @PostMapping("/login-error")
     public ModelAndView failedLogin(@ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
-                                    String username, @ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
-                                    String password){
+                                    String username){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("bad_credentials",true);
         modelAndView.addObject("username",username);
-        System.out.println(password);
 
         modelAndView.setViewName("/login");
 
         return modelAndView;
 
     }
-
-
-
 }

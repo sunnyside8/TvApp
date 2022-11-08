@@ -1,6 +1,5 @@
 package org.example.repository;
 
-import org.apache.catalina.User;
 import org.example.model.entity.UserEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

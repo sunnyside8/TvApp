@@ -1,6 +1,5 @@
 package org.example.model.binding;
 
-import lombok.Data;
 import org.example.validation.FieldMatch;
 import org.example.validation.UniqueEmail;
 import org.example.validation.UniqueUsername;
