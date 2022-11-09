@@ -1,23 +1,25 @@
 package org.example.model.entity;
 
+import org.example.model.enums.GenreEnum;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
+
 public abstract class CinematicEntity {
 
     @Id
     private String id;
 
     private String title;
-@Field(name = "Img_url")
+    @Field(name = "img_url")
     private String imgUrl;
 
     @Field(name = "year_of_release")
     private int yearOfRelease;
 
-    private List<GenreEntity> genres;
+    private List<GenreEnum> genres;
 
     @DBRef
     private List<ActorEntity> actors;
@@ -64,11 +66,11 @@ public abstract class CinematicEntity {
         return this;
     }
 
-    public List<GenreEntity> getGenres() {
+    public List<GenreEnum> getGenres() {
         return genres;
     }
 
-    public CinematicEntity setGenres(List<GenreEntity> genres) {
+    public CinematicEntity setGenres(List<GenreEnum> genres) {
         this.genres = genres;
         return this;
     }

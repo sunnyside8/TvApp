@@ -4,7 +4,7 @@
 <body>
 <header th:replace="fragments/commons :: navigation"></header>
 <main class="p-5 bg-blur text-center">
-    <h1 class="text-light border-bottom">Add Film</h1>
+    <h1 class="text-light border-bottom">Add Actor Information</h1>
     <div class="d-flex justify-content-center">
         <div class="container">
             <form th:object="${actorEditModel}" th:action="@{/actors/edit/{id}(id = *{id})}" th:method="post">
@@ -14,7 +14,7 @@
                         <div class="label-holder text-white textCol d-flex justify-content-center">
                             <label for="releaseDate" class="h4 mb-2">Birthday</label>
                         </div>
-                        <input th:field="*{birthday}" th:errorclass="bg-danger" type="date" class="form-control" id="releaseDate" name="releaseDate"/>
+                        <input th:field="*{birthday}" th:errorclass="is-invalid" type="date" class="form-control" id="releaseDate" name="releaseDate"/>
                         <small th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="text-danger">Error</small>
                     </div>
 
@@ -22,7 +22,7 @@
                         <div class="label-holder textCol d-flex justify-content-center">
                             <label for="pictureUrl" class="h4 mb-2 text-white">Picture Url</label>
                         </div>
-                        <input th:field="*{pictureUrl}" th:errorclass="bg-danger" type="text" class="form-control" id="pictureUrl" name="pictureUrl"/>
+                        <input th:field="*{pictureUrl}" th:errorclass="is-invalid" type="text" class="form-control" id="pictureUrl" name="pictureUrl"/>
                         <small th:if="${#fields.hasErrors('pictureUrl')}" th:errors="*{pictureUrl}"class="text-danger"> Error</small>
                     </div>
 
@@ -32,6 +32,7 @@
                         </div>
                     </div>
                 </div>
+            </form>
     </div>
 </main>
 <footer class="footer bg-blur" th:replace="fragments/commons :: footer">

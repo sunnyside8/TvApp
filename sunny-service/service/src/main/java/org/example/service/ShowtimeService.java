@@ -3,7 +3,6 @@ package org.example.service;
 import lombok.AllArgsConstructor;
 import org.example.model.binding.CinematicBindingModel;
 import org.example.model.entity.ActorEntity;
-import org.example.model.entity.GenreEntity;
 import org.example.model.entity.ShowtimeEntity;
 import org.example.model.enums.GenreEnum;
 import org.example.repository.ShowtimeRepository;
@@ -23,8 +22,8 @@ public class ShowtimeService {
 
 
     public ShowtimeEntity createShowtime(CinematicBindingModel showtime) {
-        List<GenreEntity> genres = Arrays.stream(showtime.getGenres().split(", "))
-                .map(line -> new GenreEntity(GenreEnum.valueOf(line))).toList();
+        List<GenreEnum> genres = Arrays.stream(showtime.getGenres().split(", "))
+                .map(GenreEnum::valueOf).toList();
 
         List<ActorEntity> actors =  actorService.findActorsOrCreateAndReturnAsList(showtime.getActors());
 

@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.example.model.binding.CinematicBindingModel;
 import org.example.model.entity.ActorEntity;
 import org.example.model.entity.FilmEntity;
-import org.example.model.entity.GenreEntity;
 import org.example.model.enums.GenreEnum;
 import org.example.model.view.FilmModalViewModel;
 import org.example.repository.FilmRepository;
@@ -24,8 +23,8 @@ public class FilmService {
     private final ActorService actorService;
 
     public FilmEntity createFilm(CinematicBindingModel film) {
-        List<GenreEntity> genres = Arrays.stream(film.getGenres().split(", "))
-                .map(line -> new GenreEntity(GenreEnum.valueOf(line))).toList();
+        List<GenreEnum> genres = Arrays.stream(film.getGenres().split(", "))
+                .map(line -> GenreEnum.valueOf(line)).toList();
 
         List<ActorEntity> actors =  actorService.findActorsOrCreateAndReturnAsList(film.getActors());
 
@@ -41,7 +40,7 @@ public class FilmService {
                 .stream().map(film -> {
                     FilmModalViewModel filmModalViewModel = modelMapper.map(film, FilmModalViewModel.class);
                     try {
-                        filmModalViewModel.setOneOfTheGenres(film.getGenres().get(0).getGenre().toString());
+                        filmModalViewModel.setOneOfTheGenres(film.getGenres().get(0).name());
                     }catch (Exception e){
                         //logg that there is a movie with no genres => admin mistake or substring error
                     }

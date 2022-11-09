@@ -7,10 +7,7 @@ import org.example.service.ActorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -32,21 +29,23 @@ public class ActorController {
 
     @GetMapping("/edit/{id}")
     public String editActor(@PathVariable String id,Model model){
-        ActorEditModel actorEditModel = new ActorEditModel();
-        actorEditModel.setId(id);
-        model.addAttribute("actorEditModel",actorEditModel);
+        if(!model.containsAttribute("actorEditModel")){
+            ActorEditModel actorEditModel = new ActorEditModel();
+            actorEditModel.setId(id);
+            model.addAttribute("actorEditModel",actorEditModel);
+        }
         return "edit-actor";
     }
 
     @PostMapping("/edit/{id}")
-    public String saveEditedActor( @Valid ActorEditModel actorEditModel,@PathVariable String id,
+    public String saveEditedActor( @PathVariable String id,@Valid ActorEditModel actorEditModel,
                                    BindingResult bindingResult,
                                    RedirectAttributes redirectAttributes){
         if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("actorEditModel",actorEditModel)
                     .addFlashAttribute("org.springframework.validation.BindingResult.actorEditModel",bindingResult);
 
-            return "redirect:/edit/{id}";
+            return "redirect:/actors/edit/{id}";
         }
 
         actorEditModel.setId(id);
@@ -54,6 +53,7 @@ public class ActorController {
 
         return "redirect:/actors";
     }
+
 
     @GetMapping("/delete/{id}")
     public String deleteActor(@PathVariable String id){

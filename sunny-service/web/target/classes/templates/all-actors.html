@@ -5,7 +5,6 @@
 <body>
 <header th:replace="fragments/commons :: navigation"></header>
 <main class="p-5 align-content-center bg-blur">
-    <div class="row mb-2">
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-4" th:each="a : ${actors}" th:object="${a}">
@@ -32,7 +31,6 @@
                                class="btn btn-primary">Delete</a>
                         </div>
                     </div>
-                </div>
             </div>
 
         </div>
