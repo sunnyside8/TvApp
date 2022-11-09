@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Document(collection = "actors")
 public class ActorEntity {
@@ -61,5 +62,18 @@ public class ActorEntity {
     public ActorEntity setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ActorEntity that = (ActorEntity) o;
+        return Objects.equals(name, that.name) && Objects.equals(birthday, that.birthday);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, birthday);
     }
 }

@@ -22,14 +22,13 @@ public class ActorService {
     private final ModelMapper modelMapper;
 
 
-    public ActorEntity findById(String id) {
+    public ActorEntity findActorEntityById(String id) {
        return actorRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Entity with this id not found"));
     }
 
     public ActorEntity editActorEntity(ActorEditModel actorEditModel) {
-        ActorEntity actorEntity = actorRepository.findById(actorEditModel.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Actor not found"));
+        ActorEntity actorEntity = findActorEntityById(actorEditModel.getId());
         actorEntity.setBirthday(LocalDate.parse(actorEditModel.getBirthday()))
                 .setPictureUrl(actorEditModel.getPictureUrl())
                 .setApproved(false);
