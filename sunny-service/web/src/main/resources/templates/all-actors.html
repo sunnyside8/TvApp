@@ -7,12 +7,12 @@
 <main class="p-5 align-content-center bg-blur">
         <div class="col-md-6">
             <div class="row">
-                <div class="col-md-4" th:each="a : ${actors}" th:object="${a}">
+                <div class="col-md-6" th:each="a : ${actors}" th:object="${a}">
                     <div class="card rounded mb-4 shadow-sm">
                         <img th:if="${a.getPictureUrl() != null}"
                                 class="card-img-top"
                                 width="175" height="175"
-                                th:src="@{a.pictureUrl}"
+                                th:src="${a.pictureUrl}"
                         />
                         <img th:unless="${a.getPictureUrl() != null}"
                                 class="card-img-top"
@@ -26,6 +26,7 @@
                             </th:block>
                         </div>
                         <div class="card-footer">
+                            <a th:href="@{/actors/full-info/{id}(id=${a.getId()})}" class="btn btn-primary">Full Details</a>
                             <a th:href="@{/actors/edit/{id}(id=${a.getId()})}" class="btn btn-primary">Edit</a>
                             <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/actors/delete/{id}(id=${a.getId()})}"
                                class="btn btn-primary">Delete</a>

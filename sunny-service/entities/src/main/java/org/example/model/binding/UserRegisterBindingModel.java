@@ -6,6 +6,7 @@ import org.example.validation.UniqueUsername;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 @FieldMatch(
         first = "password",
@@ -27,11 +28,15 @@ public class UserRegisterBindingModel {
     private String fullName;
 
     @NotBlank(message = "Please enter password")
-    @Size(min = 5,max =20,message = "Password must be between 5 and 20 symbols")
+    @Size(min = 8,max =20,message = "Password must be between 8 and 20 symbols")
+//    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\\\d)[A-Za-z\\\\d]$",
+//            message = "Password must contain at least one letter or number")
     private String password;
 
     @NotBlank(message = "Please enter confirm password")
-    @Size(min = 5,max =20,message = "Confirm password must be between 5 and 20 symbols")
+    @Size(min = 8,max =20,message = "Confirm password must be between 5 and 20 symbols")
+//    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\\\d)[A-Za-z\\\\d]$",
+//            message = "Password must contain at least one letter and one digit")
     private String confirmPassword;
 
     public String getUsername() {

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ActorServiceTest {
@@ -100,7 +100,7 @@ class ActorServiceTest {
         when(actorRepository.findActorEntitiesByApprovedTrue()).thenReturn(List.of(actorEntity));
         when(modelMapper.map(actorEntity, ActorViewModel.class)).thenReturn(actorViewModel);
 
-        assertEquals(List.of(actorViewModel), actorService.getAllActors());
+        assertEquals(List.of(actorViewModel), actorService.getAllActorViewModels());
 
     }
 
@@ -108,12 +108,14 @@ class ActorServiceTest {
     void getAllActors_emptyList() {
         when(actorRepository.findActorEntitiesByApprovedTrue()).thenReturn(new ArrayList<>());
 
-        assertEquals(new ArrayList<>(), actorService.getAllActors());
+        assertEquals(new ArrayList<>(), actorService.getAllActorViewModels());
 
     }
 
     @Test
     void deleteActorById() {
+        actorService.deleteActorById("Edno");
 
+        verify(actorRepository, times(1)).deleteById("Edno");
     }
 }

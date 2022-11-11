@@ -48,7 +48,7 @@ public class ActorService {
 
     }
 
-    public List<ActorViewModel> getAllActors() {
+    public List<ActorViewModel> getAllActorViewModels() {
         return actorRepository.findActorEntitiesByApprovedTrue()
                 .stream().map(actor -> modelMapper.map(actor, ActorViewModel.class))
                 .collect(Collectors.toList());

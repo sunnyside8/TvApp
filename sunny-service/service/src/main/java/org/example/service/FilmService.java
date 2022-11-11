@@ -5,6 +5,8 @@ import org.example.model.binding.CinematicBindingModel;
 import org.example.model.entity.ActorEntity;
 import org.example.model.entity.FilmEntity;
 import org.example.model.enums.GenreEnum;
+import org.example.model.view.ActorViewModel;
+import org.example.model.view.FilmFullViewModel;
 import org.example.model.view.FilmModalViewModel;
 import org.example.repository.FilmRepository;
 import org.modelmapper.ModelMapper;
@@ -48,5 +50,20 @@ public class FilmService {
                     return filmModalViewModel;
                 })
                 .collect(Collectors.toList());
+    }
+
+    public FilmEntity getFilmEntityById(String id){
+        return filmRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("This film doesn't exist"));
+    }
+
+
+    public FilmFullViewModel getFilmFullViewModelById(String id) {
+        FilmEntity filmEntity = getFilmEntityById(id);
+        FilmFullViewModel filmFullViewModel = modelMapper.map(filmEntity, FilmFullViewModel.class);
+        filmFullViewModel.setActors(filmEntity.getActors().stream()
+                .map(actor -> modelMapper.map(actor, ActorViewModel.class))
+                .collect(Collectors.toList()));
+
+        return filmFullViewModel;
     }
 }

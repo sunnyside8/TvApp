@@ -5,6 +5,7 @@ import org.example.service.FilmService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -21,6 +22,13 @@ public class FilmController {
         }
         return "all-films";
     }
+
+    @GetMapping("/{id}/full-info")
+    public String filmFullView(@PathVariable String id,Model model){
+        model.addAttribute("film",filmService.getFilmFullViewModelById(id));
+        return "film-page";
+    }
+
 
 
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:sec="https://thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons :: head"></head>
+<body>
+<header th:replace="fragments/commons :: navigation"></header>
+<main class="p-5 bg-blur text-center">
+    <div class="container" th:object="${film}">
+        <div class="bg-light text-dark rounded">
+            <h1 class="fw-bolder text-left" th:text="*{title}">
+                <small class="text-center fw-normal fst-italic"></small>
+            </h1>
+
+            <div class="row ">
+                <div class="col-6 col-lg-6">
+                    <img th:src="*{imgUrl}"
+                         width="600"
+                         height="500"
+                         class="img-fluid rounded-1">
+                </div>
+
+                <div class="col-6 col-lg-6">
+                    <h3 class="my-3">About this film</h3>
+                    <p class="lead text-center"><strong th:text=" 'Year of release '  + *{yearOfRelease}">2000</strong>
+                    </p>
+                    <p class="user-select-none" th:text="*{description}"></p>
+                  <form sec:authorize="isAuthenticated()" class="home-playlist-button"
+                        th:action="@{/films/{id}/add-to-favorite(id= *{id})}"
+                        th:method="post">
+                    <button type="button" class="btn btn-danger">Favorite</button>
+                  </form>
+
+                    <h3>Genres:</h3>
+                    <ul>
+                        <li th:each="g : *{genres}" style="display: inline;">
+                            <div th:text="${g}"></div>
+                    </ul>
+                    <h3>Actors:</h3>
+                    <ul>
+                        <li th:each="actor : *{actors}">
+                            <a th:href="@{/actors/{id}/full-info(id=${actor.getId()})}" th:text="${actor.name}">Name</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+            <div class="row p-3">
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer bg-blur" th:replace="fragments/commons :: footer">
+</footer>
+</body>
+</html>

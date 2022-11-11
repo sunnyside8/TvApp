@@ -22,7 +22,7 @@ public class ActorController {
     @GetMapping
     public String showAllActors(Model model) {
         if(!model.containsAttribute("actors")) {
-            model.addAttribute("actors", actorService.getAllActors());
+            model.addAttribute("actors", actorService.getAllActorViewModels());
         }
         return "all-actors";
     }
@@ -59,6 +59,12 @@ public class ActorController {
     public String deleteActor(@PathVariable String id){
         actorService.deleteActorById(id);
         return "redirect:/actors";
+    }
+
+
+    @GetMapping("/{id}/full-info")
+    public String actorFullInfo(@PathVariable String id){
+        return "";
     }
 
 }

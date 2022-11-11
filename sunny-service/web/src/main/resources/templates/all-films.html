@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <div class="card flex-md-row mb-4 shadow-sm h-md-250" th:each="f : ${films}" th:object="${f}">
                     <img class="card-img-right flex-auto d-none d-lg-block" th:if="${f.getImgUrl() != null}"
-                         th:src="@{f.imgUrl}" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;">
+                         th:src="${f.imgUrl}" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;">
                     <img th:unless="${f.getImgUrl() != null}"
                          class="card-img-right flex-auto d-none d-lg-block"
                          alt="Thumbnail [200x250]" style="width: 200px; height: 250px;"
@@ -19,7 +19,7 @@
                         <h3 class="mb-0" th:text="*{title}" >Title</h3>
                         <div class="mb-1 text-muted" th:text="*{yearOfRelease}">Text</div>
                         <p class="card-text mb-auto" th:text="*{description} + '...'">First 60 characters from content + ...</p>
-                        <a href="/static">Find out more</a>
+                        <a th:href="@{/films/{id}/full-info(id=*{id})}">Find out more</a>
                     </div>
 
                 </div>

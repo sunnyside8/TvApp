@@ -1,6 +1,7 @@
 package org.example.model.binding;
 
 
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 

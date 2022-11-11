@@ -12,5 +12,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 public class TvApp {
     public static void main(String[] args){
         SpringApplication.run(TvApp.class);
+
     }
 }
