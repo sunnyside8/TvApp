@@ -79,7 +79,6 @@ class FilmServiceTest {
                 "gods--and imprisoned just as quickly--Black Adam (Dwayne Johnson) is freed from his earthly tomb, " +
                 "ready to unleash his unique form of justice on the modern world.");
         cinematicBindingModel.setActors("Aktiorsko ime");
-        cinematicBindingModel.setRating(8);
         cinematicBindingModel.setGenres("Adventure");
         cinematicBindingModel.setImgUrl("https://pbs.twimg.com/media/Fbrr88FXgAADzHN?format=jpg&name=large");
 

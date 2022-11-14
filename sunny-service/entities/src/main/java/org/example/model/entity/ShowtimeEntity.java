@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class ShowtimeEntity extends CinematicEntity{
 
-    @DBRef
+
     private List<EpisodeEntity> episodes = new ArrayList<>();
 
 

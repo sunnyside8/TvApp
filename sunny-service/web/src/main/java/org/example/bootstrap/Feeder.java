@@ -22,7 +22,6 @@ public class Feeder implements CommandLineRunner {
     private final ActorRepository actorRepository;
     private final UserRepository userRepository;
     private final ShowtimeRepository showtimeRepository;
-    private final EpisodeRepository episodeRepository;
 
     private final PasswordEncoder passwordEncoder;
 
