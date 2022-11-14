@@ -5,7 +5,7 @@
 <body>
 <header th:replace="fragments/commons :: navigation"></header>
 <main class="p-5 bg-blur text-center">
-    <div class="container" th:object="${film}">
+    <div class="container" th:object="${showtime}">
         <div class="bg-light text-dark rounded">
             <h1 class="fw-bolder text-left" th:text="*{title}">
                 <small class="text-center fw-normal fst-italic"></small>
@@ -21,28 +21,37 @@
 
                 <div class="col-6 col-lg-6">
                     <h3 class="my-3">About this film</h3>
-                    <p class="lead text-center"><strong th:text=" 'Year of release '  + *{yearOfRelease}">2000</strong>
+                    <p class="lead text-center"><strong th:text=" 'Year of release: '  + *{yearOfRelease}">2000</strong>
                     </p>
                     <p class="user-select-none" th:text="*{description}"></p>
-                    <a th:href="@{users/films/{id}/add-to-favorite(id=*{id})}" class="btn btn-danger">Favorite</a>
+                    <a th:href="@{users/showtimes/{id}/add-to-favorite(id=*{id})}" class="btn btn-danger">Favorite</a>
                     <h3>Genres:</h3>
                     <ul>
                         <li th:each="g : *{genres}" style="display: inline;">
                             <div th:text="${g}"></div>
                     </ul>
                     <h3>Actors:</h3>
+                        <ul>
+                            <a th:if="${showtime.getActors().size()} == 0">There are no actors added to this film yet</a>
+                            <li th:unless="${showtime.getActors().size()} == 0" th:each="actor : *{actors}">
+                                <a th:href="@{/actors/{id}/full-info(id=${actor.getId()})}" th:text="${actor.name}">Name</a>
+                            </li>
+                        </ul>
+                    <h3>Episodes:</h3>
                     <ul>
-                        <li th:each="actor : *{actors}">
-                            <a th:href="@{/actors/{id}/full-info(id=${actor.getId()})}" th:text="${actor.name}">Name</a>
+                        <li th:each="episode : *{episodes}">
+                            <a th:if="${film.getEpisodes().size()} == 0">There are no episodes added to this showtime yet</a>
+                            <a th:unless="${film.getEpisodes().size()} == 0"
+                               th:href="@{/apisodes/{id}/full-info(id=${episode.getId()})}" th:text="${episode.title}">Name</a>
                         </li>
                     </ul>
+
                 </div>
             </div>
             </div>
             <div class="row p-3">
             </div>
         </div>
-    </div>
 </main>
 
 <footer class="footer bg-blur" th:replace="fragments/commons :: footer">

@@ -55,7 +55,6 @@ class ActorServiceTest {
     @Test
     void findActorEntityById_okay() {
         when(actorRepository.findById("638")).thenReturn(Optional.of(actorEntity));
-        //  when(modelMapper.map(any(ActorEntity.class), ActorViewModel.class)).thenReturn(any(ActorViewModel.class));
         assertEquals(actorEntity, actorService.findActorEntityById("638"));
 
     }

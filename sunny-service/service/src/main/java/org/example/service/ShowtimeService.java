@@ -5,6 +5,9 @@ import org.example.model.binding.CinematicBindingModel;
 import org.example.model.entity.ActorEntity;
 import org.example.model.entity.ShowtimeEntity;
 import org.example.model.enums.GenreEnum;
+import org.example.model.view.ActorViewModel;
+import org.example.model.view.EpisodeViewModel;
+import org.example.model.view.ShowtimeFullViewModel;
 import org.example.model.view.ShowtimeModalViewModel;
 import org.example.repository.ShowtimeRepository;
 import org.modelmapper.ModelMapper;
@@ -52,5 +55,22 @@ public class ShowtimeService {
                     return showtimeMVM;
                 })
                 .collect(Collectors.toList());
+    }
+
+    public ShowtimeFullViewModel getShowtimeFullViewModelById(String id) {
+        ShowtimeEntity showtimeEntity = getShowtimeEntityById(id);
+        ShowtimeFullViewModel showtimeFullViewModel = modelMapper.map(showtimeEntity,ShowtimeFullViewModel.class);
+        showtimeFullViewModel.setActors(showtimeEntity.getActors().stream()
+                .map(actor -> modelMapper.map(actor, ActorViewModel.class))
+                .collect(Collectors.toList()));
+        showtimeFullViewModel.setEpisodes(showtimeEntity.getEpisodes().stream()
+                .map(episode -> modelMapper.map(episode, EpisodeViewModel.class))
+                .collect(Collectors.toList()));
+        return showtimeFullViewModel;
+    }
+
+    public ShowtimeEntity getShowtimeEntityById(String id){
+        return showtimeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("No showtime with this id found"));
     }
 }

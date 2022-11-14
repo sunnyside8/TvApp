@@ -20,7 +20,7 @@
                         <div class="mb-1 text-muted" th:text="*{yearOfRelease}">Text</div>
                         <div class="mb-1 text-muted" th:text="'Episodes count : ' + *{numberOfEpisodes}">Text</div>
                         <p class="card-text mb-auto" th:text="*{description} + '...'">First 60 characters from content + ...</p>
-                        <a th:href="@{/films/{id}/full-info(id=*{id})}">Find out more</a>
+                        <a th:href="@{/showtimes/{id}/full-info(id=*{id})}">Find out more</a>
                     </div>
 
                 </div>

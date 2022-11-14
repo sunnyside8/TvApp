@@ -21,7 +21,7 @@
 
                 <div class="col-6 col-lg-6">
                     <h3 class="my-3">About this film</h3>
-                    <p class="lead text-center"><strong th:text=" 'Year of release '  + *{yearOfRelease}">2000</strong>
+                    <p class="lead text-center"><strong th:text=" 'Year of release: '  + *{yearOfRelease}">2000</strong>
                     </p>
                     <p class="user-select-none" th:text="*{description}"></p>
                     <a th:href="@{users/films/{id}/add-to-favorite(id=*{id})}" class="btn btn-danger">Favorite</a>
@@ -32,7 +32,8 @@
                     </ul>
                     <h3>Actors:</h3>
                     <ul>
-                        <li th:each="actor : *{actors}">
+                        <a th:if="${film.getActors().size()} == 0">There are actors added to this film yet</a>
+                        <li th:unless="${film.getActors().size()} == 0" th:each="actor : *{actors}">
                             <a th:href="@{/actors/{id}/full-info(id=${actor.getId()})}" th:text="${actor.name}">Name</a>
                         </li>
                     </ul>
