@@ -24,12 +24,7 @@
                     <p class="lead text-center"><strong th:text=" 'Year of release '  + *{yearOfRelease}">2000</strong>
                     </p>
                     <p class="user-select-none" th:text="*{description}"></p>
-                  <form sec:authorize="isAuthenticated()" class="home-playlist-button"
-                        th:action="@{/films/{id}/add-to-favorite(id= *{id})}"
-                        th:method="post">
-                    <button type="button" class="btn btn-danger">Favorite</button>
-                  </form>
-
+                    <a th:href="@{users/films/{id}/add-to-favorite(id=*{id})}" class="btn btn-danger">Favorite</a>
                     <h3>Genres:</h3>
                     <ul>
                         <li th:each="g : *{genres}" style="display: inline;">

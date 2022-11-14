@@ -5,12 +5,14 @@ import org.example.model.binding.CinematicBindingModel;
 import org.example.model.entity.ActorEntity;
 import org.example.model.entity.ShowtimeEntity;
 import org.example.model.enums.GenreEnum;
+import org.example.model.view.ShowtimeModalViewModel;
 import org.example.repository.ShowtimeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -32,5 +34,23 @@ public class ShowtimeService {
         showtimeEntity.setGenres(genres);
 
         return showtimeRepository.save(showtimeEntity);
+    }
+
+    public List<ShowtimeModalViewModel> getAllApprovedShowtimes() {
+        return showtimeRepository.getShowtimeEntitiesByApprovedTrue().stream()
+                .map(showtime -> {
+                    ShowtimeModalViewModel showtimeMVM = modelMapper.map(showtime,ShowtimeModalViewModel.class);
+                    try{
+                        showtimeMVM.setOneOfTheGenres(showtime.getGenres().get(0).name());
+                    } catch (Exception e){
+                        ///log mistake
+                    }
+                    showtimeMVM.setDescription(showtime.getDescription().substring(0,33));
+                    showtimeMVM.setNumberOfEpisodes(showtime.getEpisodes().size() == 0
+                            ? 0
+                            : showtime.getEpisodes().size());
+                    return showtimeMVM;
+                })
+                .collect(Collectors.toList());
     }
 }

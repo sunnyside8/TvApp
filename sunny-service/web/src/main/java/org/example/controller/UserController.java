@@ -2,6 +2,7 @@ package org.example.controller;
 
 import lombok.AllArgsConstructor;
 import org.example.model.binding.UserRegisterBindingModel;
+import org.example.service.FilmService;
 import org.example.service.UserService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
+    private final FilmService filmService;
 
     @GetMapping("/register")
     public String register() {
@@ -62,8 +64,9 @@ public class UserController {
 
     }
 
-    @GetMapping("films/{id}/add-to-favorite")
-    public String addToFavorite(@PathVariable String id) {
-        return "";
-    }
+//    @GetMapping("/films/{id}/add-to-favorite")
+//    public String addToFavorite(@PathVariable String id) {
+//        String redirectUrl = "/films/" + id + "/full-info";
+//        return "redirect:" + redirectUrl;
+//    }
 }

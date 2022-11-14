@@ -1,9 +1,12 @@
 package org.example.model.entity;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.List;
 import java.util.Set;
 
 @Document(collection = "users")
@@ -19,7 +22,11 @@ public class UserEntity {
     private String email;
     private Set<String> roles;
 
+    private List<String> favoriteFilmsIds;
 
+    // или
+    @DBRef
+    private List<FilmEntity> favoriteFilms;
 
 
 }

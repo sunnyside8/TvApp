@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/commons :: head"></head>
+<body>
+<header th:replace="fragments/commons :: navigation"></header>
+<main class="p-5 align-content-center bg-blur">
+    <div class="row mb-2">
+            <div class="col-md-6">
+                <div class="card flex-md-row mb-4 shadow-sm h-md-250" th:each="f : ${showtimes}" th:object="${f}">
+                    <img class="card-img-right flex-auto d-none d-lg-block" th:if="${f.getImgUrl() != null}"
+                         th:src="${f.imgUrl}" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;">
+                    <img th:unless="${f.getImgUrl() != null}"
+                         class="card-img-right flex-auto d-none d-lg-block"
+                         alt="Thumbnail [200x250]" style="width: 200px; height: 250px;"
+                         th:src="@{/images/noimgac.jpg}"
+                    />
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <strong class="d-inline-block mb-2 text-primary" th:text="*{oneOfTheGenres}">Genre</strong>
+                        <h3 class="mb-0" th:text="*{title}" >Title</h3>
+                        <div class="mb-1 text-muted" th:text="*{yearOfRelease}">Text</div>
+                        <div class="mb-1 text-muted" th:text="'Episodes count : ' + *{numberOfEpisodes}">Text</div>
+                        <p class="card-text mb-auto" th:text="*{description} + '...'">First 60 characters from content + ...</p>
+                        <a th:href="@{/films/{id}/full-info(id=*{id})}">Find out more</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+<footer class="footer bg-blur" th:replace="fragments/commons :: footer">
+</footer>
+</body>
+</html>

@@ -11,12 +11,12 @@
                     <div class="card rounded mb-4 shadow-sm">
                         <img th:if="${a.getPictureUrl() != null}"
                                 class="card-img-top"
-                                width="175" height="175"
+                                width="150" height="300"
                                 th:src="${a.pictureUrl}"
                         />
                         <img th:unless="${a.getPictureUrl() != null}"
                                 class="card-img-top"
-                                width="175" height="175"
+                                width="150" height="300"
                                 th:src="@{/images/noimgac.jpg}"
                         />
                         <div class="card-body">
