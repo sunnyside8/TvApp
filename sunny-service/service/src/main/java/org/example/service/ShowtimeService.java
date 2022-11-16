@@ -29,12 +29,12 @@ public class ShowtimeService {
     private final ActorService actorService;
     private final ModelMapper modelMapper;
 
-
+    @Transactional
     public ShowtimeEntity createShowtime(CinematicBindingModel showtime) {
         List<GenreEnum> genres = Arrays.stream(showtime.getGenres().split(", "))
                 .map(GenreEnum::valueOf).toList();
 
-        List<ActorEntity> actors =  actorService.findActorsOrCreateAndReturnAsList(showtime.getActors());
+        List<ActorEntity> actors = actorService.findActorsOrCreateAndReturnAsList(showtime.getActors());
 
         ShowtimeEntity showtimeEntity = modelMapper.map(showtime, ShowtimeEntity.class);
         showtimeEntity.setActors(actors);
@@ -46,13 +46,13 @@ public class ShowtimeService {
     public List<ShowtimeModalViewModel> getAllApprovedShowtimes() {
         return showtimeRepository.getShowtimeEntitiesByApprovedTrue().stream()
                 .map(showtime -> {
-                    ShowtimeModalViewModel showtimeMVM = modelMapper.map(showtime,ShowtimeModalViewModel.class);
-                    try{
+                    ShowtimeModalViewModel showtimeMVM = modelMapper.map(showtime, ShowtimeModalViewModel.class);
+                    try {
                         showtimeMVM.setOneOfTheGenres(showtime.getGenres().get(0).name());
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         ///log mistake
                     }
-                    showtimeMVM.setDescription(showtime.getDescription().substring(0,33));
+                    showtimeMVM.setDescription(showtime.getDescription().substring(0, 33));
                     showtimeMVM.setNumberOfEpisodes(showtime.getEpisodes().size() == 0
                             ? 0
                             : showtime.getEpisodes().size());
@@ -61,9 +61,10 @@ public class ShowtimeService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public ShowtimeFullViewModel getShowtimeFullViewModelById(String id) {
         ShowtimeEntity showtimeEntity = getShowtimeEntityById(id);
-        ShowtimeFullViewModel showtimeFullViewModel = modelMapper.map(showtimeEntity,ShowtimeFullViewModel.class);
+        ShowtimeFullViewModel showtimeFullViewModel = modelMapper.map(showtimeEntity, ShowtimeFullViewModel.class);
         showtimeFullViewModel.setActors(showtimeEntity.getActors().stream()
                 .map(actor -> modelMapper.map(actor, ActorViewModel.class))
                 .collect(Collectors.toList()));
@@ -73,14 +74,14 @@ public class ShowtimeService {
         return showtimeFullViewModel;
     }
 
-    public ShowtimeEntity getShowtimeEntityById(String id){
+    public ShowtimeEntity getShowtimeEntityById(String id) {
         return showtimeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("No showtime with this id found"));
     }
 
     @Transactional
     public ShowtimeEntity createEpisodeForShowtimeWithId(String id, EpisodeBindingModel episodeBindingModel) {
-        EpisodeEntity episodeEntity = modelMapper.map(episodeBindingModel,EpisodeEntity.class);
+        EpisodeEntity episodeEntity = modelMapper.map(episodeBindingModel, EpisodeEntity.class);
 
         episodeEntity.setId("s" + episodeEntity.getSeason() + "e" + episodeEntity.getEpisode());
 
