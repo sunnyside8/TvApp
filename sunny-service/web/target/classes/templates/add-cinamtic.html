@@ -14,7 +14,7 @@
                     <select  th:field="*{type}" id="type" class="custom-select" >
                         <option value="">Select type</option>
                         <option th:each="c : ${T(org.example.model.enums.TypeEnum).values()}"
-                                th:text="${c}" th:value="${c}" value="FOOD">Food</option>
+                                th:text="${c}" th:value="${c}" value="Type">Type</option>
                     </select>
                     <small th:if="${#fields.hasErrors('type')}" th:errors="*{type}" id="artistError" class="form-text bg-danger rounded">You must select type</small>
                 </div>
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center mt-4">
-                <button class="btn btn-primary btn-block w-50" type="submit">Add New Film</button>
+                <button class="btn btn-primary btn-block w-50" type="submit">Add</button>
             </div>
         </form>
     </div>

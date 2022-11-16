@@ -38,12 +38,14 @@
                             </li>
                         </ul>
                     <h3>Episodes:</h3>
-                    <button type="button" class="btn btn-warning">Add new episode</button>
+                        <button type="submit" class="btn btn-warning" >
+                            <a class="text-primay" th:href="@{/showtimes/{id}/episodes/create(id=${showtime.getId()})}">Add an episode</a>
+                        </button>
                     <ul>
                         <li th:each="episode : *{episodes}">
-                            <a th:if="${film.getEpisodes().size()} == 0">There are no episodes added to this showtime yet</a>
-                            <a th:unless="${film.getEpisodes().size()} == 0"
-                               th:href="@{/apisodes/{id}/full-info(id=${episode.getId()})}" th:text="${episode.title}">Name</a>
+                            <a th:if="${showtime.getEpisodes().size()} == 0">There are no episodes added to this showtime yet</a>
+                            <a th:unless="${showtime.getEpisodes().size()} == 0"
+                               th:href="@{/episodes/{id}/full-info(id=${episode.getId()})}" th:text="${episode.title}">Name</a>
                         </li>
                     </ul>
 

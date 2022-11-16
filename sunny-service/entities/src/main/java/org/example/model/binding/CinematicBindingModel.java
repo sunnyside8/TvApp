@@ -14,6 +14,7 @@ public class CinematicBindingModel {
     private String type;
 
     @NotBlank(message = "Please enter a title.")
+    @Size(min = 1,max = 60,message = "Title must be between 1 and 60 symbols.")
     private String title;
 
     @NotBlank(message = "Please enter an img url.")

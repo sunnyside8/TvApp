@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/commons :: head"></head>
+<body>
+<header th:replace="fragments/commons :: navigation"></header>
+<main class="p-5 bg-blur text-center">
+    <h1 class="text-light border-bottom">Add an Episode</h1>
+    <div class="d-flex justify-content-center">
+        <form th:action="@{/showtimes/{id}/episodes/create(id=${showtimeId})}" method="POST" th:object="${episodeBindingModel}"
+              class="text-light">
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="title">Title</label>
+                    <input id="title" type="text" th:field="*{title}" th:errorclass="is-invalid" class="form-control" placeholder="Title">
+                    <small th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="form-text bg-danger rounded">Error</small>
+                </div>
+                <div class="col">
+                    <label for="imgUrl">Image Url</label>
+                    <input id="imgUrl"  th:field="*{imgUrl}"
+                           th:errorclass="is-invalid" type="text" class="form-control" placeholder="Image Url">
+                    <small th:if="${#fields.hasErrors('imgUrl')}" th:errors="*{imgUrl}" id="imageUrlError" class="form-text bg-danger rounded">Error</small>
+                </div>
+            </div>
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="releaseDate">Release date</label>
+                    <input id="releaseDate" type="date" class="form-control" placeholder="Release date">
+                    <small th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}" id="realeaseDateError" class="form-text bg-danger rounded">Error</small>
+                </div>
+            </div>
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="season">Season</label>
+                    <input id="season" th:field="*{season}" type="number" class="form-control" placeholder="Season">
+                    <small th:if="${#fields.hasErrors('season')}" th:errors="*{season}" class="form-text bg-danger rounded">Error</small>
+                </div>
+
+                <div class="col">
+                    <label for="episode">Episode</label>
+                    <input id="episode" th:field="*{episode}" type="number" class="form-control" placeholder="Episode">
+                    <small th:if="${#fields.hasErrors('episode')}" th:errors="*{episode}" class="form-text bg-danger rounded">Error</small>
+                </div>
+            </div>
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="description">Description</label>
+                    <textarea id="description" th:field="*{description}"
+                              th:errorclass="is-invalid" type="text" class="form-control" placeholder="Description"></textarea>
+                    <small  th:if="${#fields.hasErrors('description')}" th:errors="*{description}" id="descriptionError" class="form-text bg-danger rounded">Error</small>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <button class="btn btn-primary btn-block w-50" type="submit">Add New Film</button>
+            </div>
+        </form>
+    </div>
+</main>
+<footer class="footer bg-blur" th:replace="fragments/commons :: footer">
+</footer>
+</body>
+</html>

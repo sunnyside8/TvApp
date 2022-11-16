@@ -4,6 +4,7 @@ package org.example.controller;
 import lombok.AllArgsConstructor;
 import org.example.model.edit.ActorEditModel;
 import org.example.service.ActorService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,7 @@ public class ActorController {
     private final ActorService actorService;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public String showAllActors(Model model) {
         if(!model.containsAttribute("actors")) {
             model.addAttribute("actors", actorService.getAllActorViewModels());
@@ -61,9 +63,9 @@ public class ActorController {
         return "redirect:/actors";
     }
 
-
     @GetMapping("/{id}/full-info")
     public String actorFullInfo(@PathVariable String id){
+        System.out.println(actorService.getActorView("Dwayne Johnson"));
         return "";
     }
 

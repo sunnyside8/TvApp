@@ -1,7 +1,10 @@
 package org.example.controller;
 
 import lombok.AllArgsConstructor;
+import org.example.model.entity.EpisodeEntity;
+import org.example.model.user.TvAppUser;
 import org.example.service.FilmService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
